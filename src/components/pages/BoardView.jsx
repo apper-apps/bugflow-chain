@@ -11,10 +11,11 @@ import Loading from "@/components/ui/Loading";
 const BoardView = () => {
   const { filters, handleFiltersChange, handleCreateIssueRef } = useOutletContext();
   const [issues, setIssues] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [selectedIssue, setSelectedIssue] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   // Pass the create issue handler to Layout
   React.useEffect(() => {
     if (handleCreateIssueRef) {
@@ -26,7 +27,7 @@ const BoardView = () => {
     setLoading(true);
     setError("");
     try {
-const data = await issueService.getAll();
+      const data = await issueService.getAll();
       setIssues(data);
     } catch (err) {
       setError(err.message || "Failed to load issues");
@@ -41,7 +42,7 @@ const data = await issueService.getAll();
 
   const handleCreateIssue = async (issueData) => {
     try {
-const newIssue = await issueService.create(issueData);
+      const newIssue = await issueService.create(issueData);
       setIssues(prev => [newIssue, ...prev]);
     } catch (err) {
       throw new Error(err.message || "Failed to create issue");
@@ -50,11 +51,13 @@ const newIssue = await issueService.create(issueData);
 
   const handleUpdateIssue = async (updatedIssue) => {
     try {
-const savedIssue = await issueService.update(updatedIssue.Id, updatedIssue);
+      const savedIssue = await issueService.update(updatedIssue.Id, updatedIssue);
       setIssues(prev => 
         prev.map(issue => issue.Id === savedIssue.Id ? savedIssue : issue)
       );
-      setSelectedIssue(savedIssue);
+      if (selectedIssue && selectedIssue.Id === savedIssue.Id) {
+        setSelectedIssue(savedIssue);
+      }
     } catch (err) {
       throw new Error(err.message || "Failed to update issue");
     }
@@ -62,7 +65,7 @@ const savedIssue = await issueService.update(updatedIssue.Id, updatedIssue);
 
   const handleDeleteIssue = async (issueId) => {
     try {
-await issueService.delete(issueId);
+      await issueService.delete(issueId);
       setIssues(prev => prev.filter(issue => issue.Id !== issueId));
       setSelectedIssue(null);
     } catch (err) {
@@ -91,17 +94,20 @@ await issueService.delete(issueId);
         ]
       };
 
-const savedIssue = await issueService.update(issueId, updatedIssue);
+      const savedIssue = await issueService.update(issueId, updatedIssue);
       setIssues(prev => 
         prev.map(issue => issue.Id === issueId ? savedIssue : issue)
       );
+      if (selectedIssue && selectedIssue.Id === issueId) {
+        setSelectedIssue(savedIssue);
+      }
     } catch (err) {
       console.error("Failed to update issue status:", err);
     }
   };
 
-  // Apply filters
-const filteredIssues = issues.filter(issue => {
+  // Filter issues based on current filters
+  const filteredIssues = issues.filter(issue => {
     // Text search
     if (filters.searchText) {
       const searchLower = filters.searchText.toLowerCase();
@@ -178,20 +184,20 @@ const filteredIssues = issues.filter(issue => {
         <KanbanBoard
           issues={filteredIssues}
           onIssueClick={setSelectedIssue}
-onCreateIssue={() => setShowCreateModal(true)}
+          onCreateIssue={() => setShowCreateModal(true)}
           onStatusChange={handleStatusChange}
         />
       )}
 
       <IssueDetailPanel
-issue={selectedIssue}
+        issue={selectedIssue}
         isOpen={!!selectedIssue}
         onClose={() => setSelectedIssue(null)}
         onSave={handleUpdateIssue}
         onDelete={handleDeleteIssue}
       />
 
-<CreateIssueModal
+      <CreateIssueModal
         isOpen={showCreateModal}
         onClose={() => setShowCreateModal(false)}
         onCreate={handleCreateIssue}
@@ -199,5 +205,3 @@ issue={selectedIssue}
     </div>
   );
 };
-
-export default BoardView;
