@@ -57,9 +57,9 @@ const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
           onSearch={handleSearch} 
           searchQuery={filters.searchText}
           onCreateIssue={onCreateIssue}
-        />
-<main className="flex-1 overflow-auto">
-          <Outlet context={{ filters, onFiltersChange: handleFiltersChange }} />
+/>
+        <main className="flex-1 overflow-auto">
+          <Outlet context={{ filters, onFiltersChange: handleFiltersChange, handleCreateIssueRef }} />
         </main>
       </div>
     </div>
