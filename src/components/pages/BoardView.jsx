@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { issueService } from "@/services/api/issueService";
+import CreateIssueModal from "@/components/organisms/CreateIssueModal";
 import KanbanBoard from "@/components/organisms/KanbanBoard";
 import IssueDetailPanel from "@/components/organisms/IssueDetailPanel";
-import CreateIssueModal from "@/components/organisms/CreateIssueModal";
-import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import { issueService } from "@/services/api/issueService";
+import Loading from "@/components/ui/Loading";
 
 const BoardView = () => {
-  const { filters } = useOutletContext();
+  const { filters, handleFiltersChange, handleCreateIssueRef } = useOutletContext();
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedIssue, setSelectedIssue] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  // Pass the create issue handler to Layout
+  React.useEffect(() => {
+    if (handleCreateIssueRef) {
+      handleCreateIssueRef(() => setShowCreateModal(true));
+    }
+  }, [handleCreateIssueRef]);
 
   const loadIssues = async () => {
     setLoading(true);
@@ -172,7 +178,7 @@ const filteredIssues = issues.filter(issue => {
         <KanbanBoard
           issues={filteredIssues}
           onIssueClick={setSelectedIssue}
-          onCreateIssue={() => setShowCreateModal(true)}
+onCreateIssue={() => setShowCreateModal(true)}
           onStatusChange={handleStatusChange}
         />
       )}

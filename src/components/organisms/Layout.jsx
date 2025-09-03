@@ -5,7 +5,8 @@ import Sidebar from "@/components/organisms/Sidebar";
 import ApperIcon from "@/components/ApperIcon";
 
 const Layout = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [onCreateIssue, setOnCreateIssue] = useState(null);
   const [filters, setFilters] = useState({
     priority: [],
     assignee: [],
@@ -28,7 +29,10 @@ const Layout = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-
+// Function to receive onCreateIssue from child component
+  const handleCreateIssueRef = (createIssueHandler) => {
+    setOnCreateIssue(() => createIssueHandler);
+  };
   return (
     <div className="flex h-screen bg-surface-50">
       {/* Mobile Menu Button */}
@@ -49,10 +53,12 @@ const Layout = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
-        <Header 
+<Header 
           onSearch={handleSearch} 
           searchQuery={filters.searchText}
+          onCreateIssue={onCreateIssue}
         />
+<Outlet context={{ filters, handleFiltersChange, handleCreateIssueRef }} />
         
         <main className="flex-1 overflow-auto">
           <Outlet context={{ filters, onFiltersChange: handleFiltersChange }} />
