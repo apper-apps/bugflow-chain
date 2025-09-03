@@ -17,10 +17,10 @@ const IssueDetailPanel = ({
   onSave, 
   onDelete 
 }) => {
-  const [editedIssue, setEditedIssue] = useState(issue || {});
+const [editedIssue, setEditedIssue] = useState(issue || {});
   const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (issue) {
       setEditedIssue(issue);
       setIsEditing(false);
@@ -40,7 +40,7 @@ const IssueDetailPanel = ({
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this issue? This action cannot be undone.")) {
       try {
-        await onDelete(issue.Id);
+await onDelete(issue.Id);
         onClose();
         toast.success("Issue deleted successfully");
       } catch (error) {
@@ -49,7 +49,7 @@ const IssueDetailPanel = ({
     }
   };
 
-  const handleChange = (field) => (e) => {
+const handleChange = (field) => (e) => {
     setEditedIssue(prev => ({
       ...prev,
       [field]: e.target.value
@@ -57,11 +57,11 @@ const IssueDetailPanel = ({
   };
 
   const handleCancel = () => {
-    setEditedIssue(issue);
+setEditedIssue(issue);
     setIsEditing(false);
   };
 
-  if (!issue) return null;
+if (!issue) return null;
 
   return (
     <AnimatePresence>
@@ -89,9 +89,9 @@ const IssueDetailPanel = ({
               <div className="flex items-center gap-3">
                 <ApperIcon name="Bug" className="w-5 h-5 text-surface-400" />
                 <div>
-                  <h2 className="text-lg font-semibold text-surface-900">Issue #{issue.Id}</h2>
+<h2 className="text-lg font-semibold text-surface-900">Issue #{issue.Id}</h2>
                   <p className="text-sm text-surface-500">
-                    Created {format(new Date(issue.createdAt), "MMM d, yyyy 'at' h:mm a")}
+Created {format(new Date(issue.createdAt), "MMM d, yyyy 'at' h:mm a")}
                   </p>
                 </div>
               </div>
@@ -144,13 +144,13 @@ const IssueDetailPanel = ({
                 {isEditing ? (
                   <Input
                     id="title"
-                    value={editedIssue.title || ""}
+value={editedIssue.title || ""}
                     onChange={handleChange("title")}
                     placeholder="Issue title"
                   />
                 ) : (
                   <h1 className="text-xl font-semibold text-surface-900 mt-1">
-                    {issue.title}
+{issue.title}
                   </h1>
                 )}
               </div>
@@ -161,7 +161,7 @@ const IssueDetailPanel = ({
                   <Label>Status:</Label>
                   {isEditing ? (
                     <select
-                      value={editedIssue.status || ""}
+value={editedIssue.status || ""}
                       onChange={handleChange("status")}
                       className="rounded-lg border border-surface-300 px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
                     >
@@ -171,7 +171,7 @@ const IssueDetailPanel = ({
                       <option value="Closed">Closed</option>
                     </select>
                   ) : (
-                    <StatusBadge status={issue.status} />
+<StatusBadge status={issue.status} />
                   )}
                 </div>
                 
@@ -179,7 +179,7 @@ const IssueDetailPanel = ({
                   <Label>Priority:</Label>
                   {isEditing ? (
                     <select
-                      value={editedIssue.priority || ""}
+value={editedIssue.priority || ""}
                       onChange={handleChange("priority")}
                       className="rounded-lg border border-surface-300 px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
                     >
@@ -189,7 +189,7 @@ const IssueDetailPanel = ({
                       <option value="Critical">Critical</option>
                     </select>
                   ) : (
-                    <PriorityBadge priority={issue.priority} />
+<PriorityBadge priority={issue.priority} />
                   )}
                 </div>
               </div>
@@ -200,7 +200,7 @@ const IssueDetailPanel = ({
                 {isEditing ? (
                   <select
                     id="assignee"
-                    value={editedIssue.assignee || ""}
+value={editedIssue.assignee || ""}
                     onChange={handleChange("assignee")}
                     className="w-full rounded-lg border border-surface-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 mt-1"
                   >
@@ -213,7 +213,7 @@ const IssueDetailPanel = ({
                 ) : (
                   <div className="flex items-center gap-3 mt-1">
                     {issue.assignee ? (
-                      <>
+<>
                         <Avatar name={issue.assignee} size="sm" />
                         <span className="text-surface-700">{issue.assignee}</span>
                       </>
@@ -230,7 +230,7 @@ const IssueDetailPanel = ({
                 {isEditing ? (
                   <textarea
                     id="description"
-                    value={editedIssue.description || ""}
+value={editedIssue.description || ""}
                     onChange={handleChange("description")}
                     placeholder="Describe the issue in detail..."
                     rows={6}
@@ -239,7 +239,7 @@ const IssueDetailPanel = ({
                 ) : (
                   <div className="mt-1">
                     {issue.description ? (
-                      <p className="text-surface-700 leading-relaxed whitespace-pre-wrap">
+<p className="text-surface-700 leading-relaxed whitespace-pre-wrap">
                         {issue.description}
                       </p>
                     ) : (
@@ -253,7 +253,7 @@ const IssueDetailPanel = ({
               <div>
                 <Label>Labels</Label>
                 <div className="flex flex-wrap gap-2 mt-1">
-                  {issue.labels && issue.labels.length > 0 ? (
+{issue.labels && issue.labels.length > 0 ? (
                     issue.labels.map((label, index) => (
                       <span
                         key={index}
@@ -273,7 +273,7 @@ const IssueDetailPanel = ({
               <div>
                 <h3 className="text-lg font-semibold text-surface-900 mb-4">Activity</h3>
                 <div className="space-y-4">
-                  {issue.history && issue.history.length > 0 ? (
+{issue.history && issue.history.length > 0 ? (
                     issue.history.map((entry, index) => (
                       <div key={index} className="flex gap-3">
                         <div className="w-8 h-8 bg-surface-100 rounded-full flex items-center justify-center flex-shrink-0">

@@ -27,22 +27,22 @@ const IssueCard = ({
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2">
           <ApperIcon name="Bug" className="w-4 h-4 text-surface-400" />
-          <span className="text-xs font-medium text-surface-500">#{issue.Id}</span>
+<span className="text-xs font-medium text-surface-500">#{issue.Id}</span>
         </div>
-        <PriorityBadge priority={issue.priority} size="sm" />
+<PriorityBadge priority={issue.priority} size="sm" />
       </div>
 
       <h4 className="font-semibold text-surface-900 mb-2 leading-tight">
-        {issue.title}
+{issue.title}
       </h4>
 
-      {issue.description && (
+{issue.description && (
         <p className="text-sm text-surface-600 mb-3 line-clamp-2 leading-relaxed">
           {issue.description}
         </p>
       )}
 
-      {issue.labels && issue.labels.length > 0 && (
+{issue.labels && issue.labels.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-3">
           {issue.labels.slice(0, 2).map((label, index) => (
             <span
@@ -64,11 +64,11 @@ const IssueCard = ({
         <div className="flex items-center gap-2 text-surface-500">
           <ApperIcon name="Calendar" className="w-3 h-3" />
           <span className="text-xs">
-            {format(new Date(issue.createdAt), "MMM d")}
+{format(new Date(issue.createdAt), "MMM d")}
           </span>
         </div>
         <div className="flex items-center gap-2">
-          {issue.assignee && (
+{issue.assignee && (
             <Avatar name={issue.assignee} size="sm" />
           )}
           <ApperIcon name="GripVertical" className="w-4 h-4 text-surface-300 hover:text-surface-500" />

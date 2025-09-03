@@ -33,8 +33,11 @@ const CreateIssueModal = ({ isOpen, onClose, onCreate }) => {
 
     setIsSubmitting(true);
     try {
-      const newIssue = {
-        ...formData,
+const newIssue = {
+        title: formData.title,
+        description: formData.description,
+        priority: formData.priority,
+        assignee: formData.assignee,
         status: "Open",
         labels: formData.labels.filter(label => label.trim()),
         createdAt: new Date().toISOString(),

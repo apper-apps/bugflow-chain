@@ -26,7 +26,7 @@ const StatusBadge = ({ status, showIcon = true, size = "md" }) => {
     }
   };
 
-  const config = statusConfig[status?.toLowerCase()] || statusConfig.open;
+const config = statusConfig[status?.toLowerCase()] || statusConfig.open;
 
   return (
     <Badge variant={config.variant} size={size} className="inline-flex items-center gap-1">

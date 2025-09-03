@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
 import SearchBar from "@/components/molecules/SearchBar";
+import Button from "@/components/atoms/Button";
 
 const Header = ({ onSearch, onCreateIssue, searchQuery }) => {
   const navigate = useNavigate();
@@ -44,9 +44,18 @@ const Header = ({ onSearch, onCreateIssue, searchQuery }) => {
           </Button>
           
           <div className="flex items-center gap-2 text-sm text-surface-600">
-            <ApperIcon name="Users" className="w-4 h-4" />
-            <span className="hidden md:inline">Team View</span>
-          </div>
+<Button
+            onClick={() => {
+              const { logout } = React.useContext(require('../../App').AuthContext) || {};
+              if (logout) logout();
+            }}
+            variant="ghost"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            <ApperIcon name="LogOut" className="w-4 h-4" />
+            <span className="hidden md:inline">Logout</span>
+          </Button>
         </div>
       </div>
 
@@ -55,7 +64,7 @@ const Header = ({ onSearch, onCreateIssue, searchQuery }) => {
         <SearchBar 
           onSearch={onSearch} 
           placeholder="Search issues..."
-          value={searchQuery}
+value={searchQuery}
         />
       </div>
     </header>

@@ -20,7 +20,7 @@ const BoardView = () => {
     setLoading(true);
     setError("");
     try {
-      const data = await issueService.getAll();
+const data = await issueService.getAll();
       setIssues(data);
     } catch (err) {
       setError(err.message || "Failed to load issues");
@@ -35,7 +35,7 @@ const BoardView = () => {
 
   const handleCreateIssue = async (issueData) => {
     try {
-      const newIssue = await issueService.create(issueData);
+const newIssue = await issueService.create(issueData);
       setIssues(prev => [newIssue, ...prev]);
     } catch (err) {
       throw new Error(err.message || "Failed to create issue");
@@ -44,7 +44,7 @@ const BoardView = () => {
 
   const handleUpdateIssue = async (updatedIssue) => {
     try {
-      const savedIssue = await issueService.update(updatedIssue.Id, updatedIssue);
+const savedIssue = await issueService.update(updatedIssue.Id, updatedIssue);
       setIssues(prev => 
         prev.map(issue => issue.Id === savedIssue.Id ? savedIssue : issue)
       );
@@ -56,7 +56,7 @@ const BoardView = () => {
 
   const handleDeleteIssue = async (issueId) => {
     try {
-      await issueService.delete(issueId);
+await issueService.delete(issueId);
       setIssues(prev => prev.filter(issue => issue.Id !== issueId));
       setSelectedIssue(null);
     } catch (err) {
@@ -85,7 +85,7 @@ const BoardView = () => {
         ]
       };
 
-      const savedIssue = await issueService.update(issueId, updatedIssue);
+const savedIssue = await issueService.update(issueId, updatedIssue);
       setIssues(prev => 
         prev.map(issue => issue.Id === issueId ? savedIssue : issue)
       );
@@ -95,7 +95,7 @@ const BoardView = () => {
   };
 
   // Apply filters
-  const filteredIssues = issues.filter(issue => {
+const filteredIssues = issues.filter(issue => {
     // Text search
     if (filters.searchText) {
       const searchLower = filters.searchText.toLowerCase();
@@ -178,14 +178,14 @@ const BoardView = () => {
       )}
 
       <IssueDetailPanel
-        issue={selectedIssue}
+issue={selectedIssue}
         isOpen={!!selectedIssue}
         onClose={() => setSelectedIssue(null)}
         onSave={handleUpdateIssue}
         onDelete={handleDeleteIssue}
       />
 
-      <CreateIssueModal
+<CreateIssueModal
         isOpen={showCreateModal}
         onClose={() => setShowCreateModal(false)}
         onCreate={handleCreateIssue}

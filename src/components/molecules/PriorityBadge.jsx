@@ -26,7 +26,7 @@ const PriorityBadge = ({ priority, showIcon = true, size = "md" }) => {
     }
   };
 
-  const config = priorityConfig[priority?.toLowerCase()] || priorityConfig.medium;
+const config = priorityConfig[priority?.toLowerCase()] || priorityConfig.medium;
 
   return (
     <Badge variant={config.variant} size={size} className="inline-flex items-center gap-1">
