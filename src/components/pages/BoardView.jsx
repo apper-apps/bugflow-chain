@@ -23,7 +23,7 @@ const BoardView = () => {
     }
   }, [handleCreateIssueRef]);
 
-  const loadIssues = async () => {
+const loadIssues = async () => {
     setLoading(true);
     setError("");
     try {
@@ -35,6 +35,11 @@ const BoardView = () => {
       setLoading(false);
     }
   };
+
+  // Load issues on component mount
+  useEffect(() => {
+    loadIssues();
+  }, []); // Empty dependency array - only run on mount
 
   useEffect(() => {
     loadIssues();
