@@ -7,7 +7,7 @@ import Button from "@/components/atoms/Button";
 
 const Header = ({ onSearch, onCreateIssue, searchQuery }) => {
   const navigate = useNavigate();
-
+  const { logout } = React.useContext(AuthContext) || {};
   return (
     <header className="bg-white border-b border-surface-200 px-6 py-4">
     <div className="flex items-center justify-between">
@@ -37,13 +37,8 @@ const Header = ({ onSearch, onCreateIssue, searchQuery }) => {
                           </Button>
             <div className="flex items-center gap-2 text-sm text-surface-600">
                 <Button
-                    onClick={() => {
-                        const {
-                            logout
-                        } = React.useContext(AuthContext) || {};
-
-                        if (logout)
-                            logout();
+onClick={() => {
+                        if (logout) logout();
                     }}
                     variant="ghost"
                     size="sm"
