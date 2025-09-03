@@ -1,0 +1,272 @@
+[
+  {
+    "Id": 1,
+    "title": "Login button not responding on mobile devices",
+    "description": "The login button becomes unresponsive on mobile devices after the recent update. Users are unable to tap the button to proceed with authentication. This affects iOS Safari and Chrome browsers on mobile.\n\nSteps to reproduce:\n1. Open the application on a mobile device\n2. Navigate to the login page\n3. Enter valid credentials\n4. Tap the login button\n5. Button does not respond\n\nExpected: Login process should proceed normally\nActual: Button appears frozen and unresponsive",
+    "status": "Open",
+    "priority": "Critical",
+    "assignee": "Sarah Johnson",
+    "labels": ["frontend", "mobile", "bug", "authentication"],
+    "createdAt": "2024-01-15T09:30:00Z",
+    "updatedAt": "2024-01-15T09:30:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-15T09:30:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "title": "Database connection timeout during peak hours",
+    "description": "Users are experiencing slow loading times and connection timeouts during peak business hours (9 AM - 5 PM EST). This is affecting approximately 30% of users and causing significant performance degradation.\n\nError logs show connection pool exhaustion and query timeouts exceeding 30 seconds. The issue appears to be related to increased traffic load without proper scaling mechanisms in place.",
+    "status": "In Progress",
+    "priority": "High",
+    "assignee": "Mike Chen",
+    "labels": ["backend", "performance", "database"],
+    "createdAt": "2024-01-14T14:20:00Z",
+    "updatedAt": "2024-01-15T08:45:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-14T14:20:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      },
+      {
+        "timestamp": "2024-01-15T08:45:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "Open",
+        "newValue": "In Progress"
+      },
+      {
+        "timestamp": "2024-01-15T08:46:00Z",
+        "action": "Assignee changed",
+        "field": "assignee",
+        "oldValue": "John Smith",
+        "newValue": "Mike Chen"
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "title": "Add dark mode theme option",
+    "description": "Users have requested a dark mode theme option to reduce eye strain during nighttime usage. This feature should include:\n\n- Toggle switch in user preferences\n- System preference detection (auto-switch based on OS setting)\n- Consistent dark theme across all application pages\n- Proper contrast ratios for accessibility compliance\n- Smooth transition animations between themes\n\nThis enhancement would improve user experience and align with modern application standards.",
+    "status": "Review",
+    "priority": "Medium",
+    "assignee": "Emily Davis",
+    "labels": ["frontend", "ui/ux", "feature", "accessibility"],
+    "createdAt": "2024-01-12T16:15:00Z",
+    "updatedAt": "2024-01-14T11:30:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-12T16:15:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      },
+      {
+        "timestamp": "2024-01-13T10:00:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "Open",
+        "newValue": "In Progress"
+      },
+      {
+        "timestamp": "2024-01-14T11:30:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "In Progress",
+        "newValue": "Review"
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "title": "Email notifications not being sent",
+    "description": "The email notification system has stopped working since yesterday. Users are not receiving:\n\n- Password reset emails\n- Account verification emails\n- System alerts and updates\n- Weekly summary reports\n\nSMTP logs show authentication failures and the email queue is backing up. This is a critical system function that needs immediate attention.",
+    "status": "Open",
+    "priority": "Critical",
+    "assignee": "John Smith",
+    "labels": ["backend", "email", "bug", "critical"],
+    "createdAt": "2024-01-15T07:45:00Z",
+    "updatedAt": "2024-01-15T07:45:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-15T07:45:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "title": "Improve search functionality with filters",
+    "description": "Current search functionality is limited and users have requested enhanced filtering capabilities:\n\n- Date range filters\n- Category-based filtering\n- Sort by relevance, date, popularity\n- Advanced search with boolean operators\n- Search result highlighting\n- Save search preferences\n\nThis would significantly improve user productivity and content discoverability.",
+    "status": "Open",
+    "priority": "Low",
+    "assignee": "Sarah Johnson",
+    "labels": ["frontend", "feature", "search", "ui/ux"],
+    "createdAt": "2024-01-10T13:00:00Z",
+    "updatedAt": "2024-01-10T13:00:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-10T13:00:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "title": "Security vulnerability in file upload",
+    "description": "Security audit revealed that the file upload functionality does not properly validate file types and sizes. Potential risks include:\n\n- Unrestricted file type uploads\n- No virus scanning\n- Insufficient file size limits\n- Directory traversal vulnerabilities\n- Executable file uploads\n\nThis needs immediate attention to prevent potential security breaches.",
+    "status": "Closed",
+    "priority": "Critical",
+    "assignee": "Mike Chen",
+    "labels": ["security", "backend", "vulnerability", "file-upload"],
+    "createdAt": "2024-01-08T11:20:00Z",
+    "updatedAt": "2024-01-12T15:30:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-08T11:20:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      },
+      {
+        "timestamp": "2024-01-09T09:15:00Z",
+        "action": "Priority changed",
+        "field": "priority",
+        "oldValue": "High",
+        "newValue": "Critical"
+      },
+      {
+        "timestamp": "2024-01-10T14:00:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "Open",
+        "newValue": "In Progress"
+      },
+      {
+        "timestamp": "2024-01-12T15:30:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "In Progress",
+        "newValue": "Closed"
+      }
+    ]
+  },
+  {
+    "Id": 7,
+    "title": "Dashboard widgets loading slowly",
+    "description": "Dashboard widgets are taking 5-8 seconds to load, significantly impacting user experience. The delay appears to be related to:\n\n- Multiple database queries running synchronously\n- Large datasets being loaded without pagination\n- Inefficient chart rendering\n- Missing caching mechanisms\n\nUsers expect dashboard to load within 2-3 seconds maximum.",
+    "status": "In Progress",
+    "priority": "Medium",
+    "assignee": "Emily Davis",
+    "labels": ["frontend", "performance", "dashboard", "optimization"],
+    "createdAt": "2024-01-11T10:30:00Z",
+    "updatedAt": "2024-01-13T16:45:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-11T10:30:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      },
+      {
+        "timestamp": "2024-01-13T16:45:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "Open",
+        "newValue": "In Progress"
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "title": "Add export functionality for reports",
+    "description": "Users need the ability to export reports in multiple formats:\n\n- PDF export with formatting\n- Excel/CSV for data analysis\n- Print-friendly versions\n- Scheduled report generation\n- Custom report templates\n\nThis feature is essential for users who need to share reports with stakeholders or conduct offline analysis.",
+    "status": "Review",
+    "priority": "High",
+    "assignee": "John Smith",
+    "labels": ["feature", "reports", "export", "pdf"],
+    "createdAt": "2024-01-09T14:00:00Z",
+    "updatedAt": "2024-01-14T12:15:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-09T14:00:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      },
+      {
+        "timestamp": "2024-01-12T09:30:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "Open",
+        "newValue": "In Progress"
+      },
+      {
+        "timestamp": "2024-01-14T12:15:00Z",
+        "action": "Status changed",
+        "field": "status",
+        "oldValue": "In Progress",
+        "newValue": "Review"
+      }
+    ]
+  },
+  {
+    "Id": 9,
+    "title": "Mobile app crashes on startup",
+    "description": "Mobile application is crashing immediately after launch on Android devices running OS version 12 and above. Crash logs indicate:\n\n- Memory allocation failures\n- Incompatible native library versions\n- Startup sequence timeout\n- Manifest permission issues\n\nThis affects approximately 40% of our mobile user base and requires urgent resolution.",
+    "status": "Open",
+    "priority": "Critical",
+    "assignee": "Sarah Johnson",
+    "labels": ["mobile", "android", "crash", "critical"],
+    "createdAt": "2024-01-14T16:20:00Z",
+    "updatedAt": "2024-01-14T16:20:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-14T16:20:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      }
+    ]
+  },
+  {
+    "Id": 10,
+    "title": "Implement user role management system",
+    "description": "Need to implement a comprehensive role-based access control system:\n\n- Admin, Manager, User, and Guest roles\n- Permission-based feature access\n- Role assignment interface\n- Audit logging for role changes\n- Integration with existing authentication\n\nThis will provide better security and allow for more granular control over application features.",
+    "status": "Open",
+    "priority": "Medium",
+    "assignee": "",
+    "labels": ["backend", "security", "feature", "roles"],
+    "createdAt": "2024-01-13T09:15:00Z",
+    "updatedAt": "2024-01-13T09:15:00Z",
+    "history": [
+      {
+        "timestamp": "2024-01-13T09:15:00Z",
+        "action": "Issue created",
+        "field": null,
+        "oldValue": null,
+        "newValue": null
+      }
+    ]
+  }
+]
