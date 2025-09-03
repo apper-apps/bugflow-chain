@@ -22,7 +22,6 @@ const BoardView = () => {
       handleCreateIssueRef(() => setShowCreateModal(true));
     }
   }, [handleCreateIssueRef]);
-
 const loadIssues = async () => {
     setLoading(true);
     setError("");
@@ -39,22 +38,17 @@ const loadIssues = async () => {
   // Load issues on component mount
   useEffect(() => {
     loadIssues();
-  }, []); // Empty dependency array - only run on mount
-
-  useEffect(() => {
-    loadIssues();
   }, []);
-
-  const handleCreateIssue = async (issueData) => {
+const handleCreateIssue = async (issueData) => {
     try {
       const newIssue = await issueService.create(issueData);
       setIssues(prev => [newIssue, ...prev]);
+      setShowCreateModal(false);
     } catch (err) {
       throw new Error(err.message || "Failed to create issue");
     }
   };
-
-  const handleUpdateIssue = async (updatedIssue) => {
+const handleUpdateIssue = async (updatedIssue) => {
     try {
       const savedIssue = await issueService.update(updatedIssue.Id, updatedIssue);
       setIssues(prev => 
@@ -77,8 +71,7 @@ const loadIssues = async () => {
       throw new Error(err.message || "Failed to delete issue");
     }
   };
-
-  const handleStatusChange = async (issueId, newStatus) => {
+const handleStatusChange = async (issueId, newStatus) => {
     try {
       const issue = issues.find(i => i.Id === issueId);
       if (!issue) return;
@@ -110,38 +103,39 @@ const loadIssues = async () => {
       console.error("Failed to update issue status:", err);
     }
   };
-
-  // Filter issues based on current filters
+// Filter issues based on current filters
   const filteredIssues = issues.filter(issue => {
-    // Text search
+    // Text search - using correct database field names
     if (filters.searchText) {
       const searchLower = filters.searchText.toLowerCase();
-      const matchesTitle = issue.title?.toLowerCase().includes(searchLower);
-      const matchesDescription = issue.description?.toLowerCase().includes(searchLower);
+      const matchesTitle = issue.title_c?.toLowerCase().includes(searchLower);
+      const matchesDescription = issue.description_c?.toLowerCase().includes(searchLower);
       const matchesId = issue.Id?.toString().includes(searchLower);
       if (!matchesTitle && !matchesDescription && !matchesId) {
         return false;
       }
     }
 
-    // Priority filter
+    // Priority filter - using correct database field and case matching
     if (filters.priority?.length > 0) {
-      if (!filters.priority.includes(issue.priority?.toLowerCase())) {
+      // Database stores: Critical, High, Medium, Low (exact case)
+      if (!filters.priority.includes(issue.priority_c)) {
         return false;
       }
     }
 
-    // Assignee filter
+    // Assignee filter - using correct database field
     if (filters.assignee?.length > 0) {
-      if (!filters.assignee.includes(issue.assignee)) {
+      if (!filters.assignee.includes(issue.assignee_c)) {
         return false;
       }
     }
 
-    // Labels filter
+    // Labels filter - using correct database field (MultiPicklist as comma-separated string)
     if (filters.labels?.length > 0) {
+      const issueLabels = issue.labels_c ? issue.labels_c.split(',').map(label => label.trim()) : [];
       const hasMatchingLabel = filters.labels.some(filterLabel =>
-        issue.labels?.some(issueLabel => 
+        issueLabels.some(issueLabel => 
           issueLabel.toLowerCase() === filterLabel.toLowerCase()
         )
       );
@@ -172,8 +166,7 @@ const loadIssues = async () => {
       />
     );
   }
-
-  return (
+return (
     <div className="h-full flex flex-col">
       {filteredIssues.length === 0 && issues.length > 0 ? (
         <div className="flex-1 flex items-center justify-center">
